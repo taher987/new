@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Word Generator</title>
+</head>
+<body>
+    <h1>Random Word Generator</h1>
+    <button id="generateButton">Generate Word</button>
+    <p id="randomWord"></p>
+    <script >
+        // Function to generate a random word
+function generateRandomWord() {
+    // Check if the button has been clicked already
+    if (document.cookie.includes("buttonClicked=true")) {
+        alert("You can only generate one word!");
+        return;
+    }
+
+    // List of random words
+    const randomWords = ["apple", "banana", "cherry", "dog", "elephant", "frog", "giraffe", "horse", "iguana", "jacket"];
+
+    // Pick a random word from the list
+    const randomIndex = Math.floor(Math.random() * randomWords.length);
+    const word = randomWords[randomIndex];
+
+    // Display the random word
+    document.getElementById("randomWord").textContent = word;
+
+    // Mark the button as clicked using a cookie
+    document.cookie = "buttonClicked=true";
+
+    // Disable the button
+    document.getElementById("generateButton").disabled = true;
+}
+
+// Attach the click event to the "Generate Word" button
+document.getElementById("generateButton").addEventListener("click", generateRandomWord);
+
+// Check if the button has been clicked already
+if (document.cookie.includes("buttonClicked=true")) {
+    document.getElementById("generateButton").disabled = true;
+}
+
+    </script>
+</body>
+</html>
